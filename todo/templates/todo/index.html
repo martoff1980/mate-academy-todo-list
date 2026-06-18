@@ -1,39 +1,53 @@
-{% extends 'todo/base.html' %}
+{% extends "todo/base.html" %}
 {% block content %}
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Задачи</h2>
-        <a href="{% url 'todo:task-create' %}" class="btn btn-primary">+ Добавить задачу</a>
+    <div class="content-header">
+        <h1>TODO list</h1>
+        <a href="{% url 'todo:task-create' %}" class="btn-add">Add task</a>
     </div>
-    {% for task in tasks %}
-        <div class="card mb-3 {% if task.is_done %}bg-light opacity-75{% endif %}">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start">
-                    <div>
-                        <h5 class="card-title {% if task.is_done %}text-decoration-line-through{% endif %}">{{ task.content }}</h5>
-                        <p class="text-muted small mb-1">Создано: {{ task.created_at|date:"Y-m-d H:i" }}</p>
-                        {% if task.deadline %}<p class="text-danger small mb-2">Дедлайн: {{ task.deadline|date:"Y-m-d H:i" }}</p>{% endif %}
-                        <div>
-                            {% for tag in task.tags.all %}<span class="badge bg-secondary">{{ tag.name }}</span>{% endfor %}
-                        </div>
+    <div class="tasks-container">
+        {% for task in tasks %}
+            <div class="task-item">
+                <div class="task-info">
+                    <div class="task-title-row">
+                        {{ task.content }}
+                        {% if task.is_done %}
+                            <span class="status-done">Done</span>
+                        {% else %}
+                            <span class="status-not-done">Not done</span>
+                        {% endif %}
                     </div>
-                    <div>
-                        <a href="{% url 'todo:task-toggle' task.id %}"
-                           class="btn btn-sm {% if task.is_done %}btn-warning{% else %}btn-success{% endif %}">
-                            {% if task.is_done %}
-                                Undo
-                            {% else %}
-                                Complete
-                            {% endif %}
-                        </a>
-                        <a href="{% url 'todo:task-update' task.id %}"
-                           class="btn btn-sm btn-outline-dark">Update</a>
-                        <a href="{% url 'todo:task-delete' task.id %}"
-                           class="btn btn-sm btn-outline-danger">Delete</a>
+                    <div class="task-meta-row">
+                        Created: {{ task.created_at|date:"F d, Y, g:i a." }}
+                        {% if task.deadline %}
+                            <span class="deadline-text">Deadline: {{ task.deadline|date:"F d, Y, g:i a." }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="task-tags-row">
+                        Tags:
+                        <span class="task-tags-list">
+                            {% for tag in task.tags.all %}
+                                {{ tag.name }}
+                                {% if not forloop.last %}{% endif %}
+                            {% empty %}
+                                no tags
+                            {% endfor %}
+                        </span>
+                        <a href="{% url 'todo:task-update' task.id %}" class="task-link">Update</a>
+                        <a href="{% url 'todo:task-delete' task.id %}" class="task-link">Delete</a>
                     </div>
                 </div>
+                <div class="task-action">
+                    {% if task.is_done %}
+                        <a href="{% url 'todo:task-toggle' task.id %}"
+                           class="btn-status btn-undo">Undo</a>
+                    {% else %}
+                        <a href="{% url 'todo:task-toggle' task.id %}"
+                           class="btn-status btn-complete">Complete</a>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    {% empty %}
-        <p>Задач пока нет.</p>
-    {% endfor %}
+        {% empty %}
+            <p style="padding: 20px 0; color: #666;">No tasks for today!</p>
+        {% endfor %}
+    </div>
 {% endblock content %}

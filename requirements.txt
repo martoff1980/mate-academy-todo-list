@@ -1,2 +1,4 @@
 django
 djlint
+fkake8
+black

@@ -31,6 +31,7 @@ class TaskDeleteView(generic.DeleteView):
     template_name = "todo/task_confirm_delete.html"
     success_url = reverse_lazy("todo:index")
 
+
 class TaskToggleStatusView(generic.View):
     def get(self, request, *args, **kwargs):
         # Get id from URL-paramiters (kwargs)
@@ -39,6 +40,7 @@ class TaskToggleStatusView(generic.View):
         task.is_done = not task.is_done
         task.save()
         return redirect('todo:index')
+
 
 # --- TAGS ---
 class TagListView(generic.ListView):

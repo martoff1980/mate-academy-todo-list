@@ -16,9 +16,10 @@ class Task(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tasks")
 
     class Meta:
-        # Сортировка: сначала невыполненные (False), затем выполненные (True)
-        # Внутри этих групп — от самых новых к старым
-        ordering = ["is_done", "-created_at"]
+    # Sort by: Uncompleted (False) first,
+    # then Completed (True)
+    # Within these groups,
+    # sort by newest to oldestordering = ["is_done", "-created_at"]
 
     def __str__(self):
         return f"{self.content[:30]}... (Done: {self.is_done})"

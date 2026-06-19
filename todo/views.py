@@ -5,7 +5,7 @@ from .models import Task, Tag
 from .forms import TaskForm, TagForm
 
 
-# --- ТАКСКИ (TASKS) ---
+# --- TASKS ---
 class TaskListView(generic.ListView):
     model = Task
     template_name = "todo/index.html"
@@ -39,7 +39,7 @@ def toggle_task_status(request, pk):
     return redirect("todo:index")
 
 
-# --- ТЕГИ (TAGS) ---
+# --- TAGS ---
 class TagListView(generic.ListView):
     model = Tag
     template_name = "todo/tag_list.html"

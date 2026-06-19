@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 from django.views import generic
-from .models import Task, Tag
-from .forms import TaskForm, TagForm
+from todo.models import Task, Tag
+from todo.forms import TaskForm, TagForm
 
 
 # --- TASKS ---

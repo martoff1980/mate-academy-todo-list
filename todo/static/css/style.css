@@ -1,4 +1,4 @@
-/* Загальні стили для сторінки */
+/* Styles for page */
 body {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 	margin: 0;
@@ -14,7 +14,7 @@ body {
 	box-sizing: border-box;
 }
 
-/* Стили сайдбара*/
+/* Sidebar's styles */
 .sidebar {
 	width: 220px;
 	flex-shrink: 0;
@@ -46,13 +46,13 @@ body {
 	background-color: #f9f9f9;
 }
 
-/* Головний контент */
+/* Main content */
 .main-content {
 	flex-grow: 1;
 	padding-left: 40px;
 }
 
-/* Верхня панель заголовку та кнопки */
+/* Top header and button */
 .content-header {
 	display: flex;
 	justify-content: space-between;
@@ -66,7 +66,7 @@ body {
 	font-weight: 500;
 }
 
-/* Кнопка Add */
+/* Add button */
 .btn-add {
 	background-color: #007bff;
 	color: white;
@@ -81,7 +81,7 @@ body {
 	background-color: #0056b3;
 }
 
-/* Таблица тегів */
+/* Tag's table */
 .tags-table {
 	width: 100%;
 	border-collapse: collapse;
@@ -103,7 +103,7 @@ body {
 	border-bottom: 1px solid #eeeeee;
 }
 
-/* Кнопки дій (Update, Delete) */
+/* Button actions (Update, Delete) */
 .btn-action {
 	display: inline-block;
 	background-color: #6c757d; /* Темно-серый цвет */
@@ -120,7 +120,7 @@ body {
 	background-color: #5a6268;
 }
 
-/* Контейнер для одного завдання */
+/* Container for single task */
 .task-item {
 	padding: 25px 0;
 	border-bottom: 1px solid #e0e0e0;
@@ -129,12 +129,12 @@ body {
 	align-items: flex-start;
 }
 
-/* Ліва частина з текстом */
+/* Left part with text */
 .task-info {
 	flex-grow: 1;
 }
 
-/* Назва задачи та статус */
+/* Name of task and status */
 .task-title-row {
 	font-size: 20px;
 	font-weight: bold;
@@ -151,7 +151,7 @@ body {
 	margin-left: 5px;
 }
 
-/* Строки с мета-даними */
+/* Meta-data strings */
 .task-meta-row {
 	font-size: 14px;
 	color: #333333;
@@ -162,7 +162,7 @@ body {
 	color: #b22222;
 }
 
-/* Строка з тегами та діями */
+/* String with text and actions */
 .task-tags-row {
 	font-size: 16px;
 	color: #666666;
@@ -172,7 +172,7 @@ body {
 	color: #333333;
 }
 
-/* Посилання Update и Delete внутри завдання */
+/* Update's and Delete's links inside the task */
 .task-link {
 	color: #0066cc;
 	text-decoration: none;
@@ -183,7 +183,7 @@ body {
 	text-decoration: underline;
 }
 
-/* Кнопки для статуса праворуч */
+/* Buttons for status on right-side */
 .btn-status {
 	display: inline-block;
 	color: white;

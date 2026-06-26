@@ -1,11 +1,11 @@
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 from django.views import generic
-from .models import Task, Tag
-from .forms import TaskForm, TagForm
+from todo.models import Task, Tag
+from todo.forms import TaskForm, TagForm
 
 
-# --- ТАКСКИ (TASKS) ---
+# --- TASKS ---
 class TaskListView(generic.ListView):
     model = Task
     template_name = "todo/index.html"
@@ -32,14 +32,17 @@ class TaskDeleteView(generic.DeleteView):
     success_url = reverse_lazy("todo:index")
 
 
-def toggle_task_status(request, pk):
-    task = get_object_or_404(Task, pk=pk)
-    task.is_done = not task.is_done
-    task.save()
-    return redirect("todo:index")
+class TaskToggleStatusView(generic.View):
+    def get(self, request, *args, **kwargs):
+        # Get id from URL-paramiters (kwargs)
+        task = get_object_or_404(Task, pk=self.kwargs['pk'])
+        # Change the status to the opposite one
+        task.is_done = not task.is_done
+        task.save()
+        return redirect('todo:index')
 
 
-# --- ТЕГИ (TAGS) ---
+# --- TAGS ---
 class TagListView(generic.ListView):
     model = Tag
     template_name = "todo/tag_list.html"
